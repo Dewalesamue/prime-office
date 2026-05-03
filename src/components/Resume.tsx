@@ -29,55 +29,7 @@ export function Resume({ onNavigate }: ResumeProps) {
     onNavigate('resume-view');
   };
 
-  /**
-   * DOWNLOAD RESUME HANDLER
-   * Downloads the PDF resume file with improved error handling
-   * CUSTOMIZATION: Replace with your actual resume PDF path
-   */
-  const handleDownloadResume = async () => {
-    try {
-      // First, try to fetch the PDF to check if it exists
-      const response = await fetch('/resume/Adewale_Samuel_Prime_Resume.pdf');
-      
-      if (!response.ok) {
-        console.error('PDF file not found');
-        alert('Resume PDF is currently not available. Please contact me directly for my resume.');
-        return;
-      }
 
-      // Create blob from response
-      const blob = await response.blob();
-      
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Adewale_Samuel_Prime_Resume.pdf';
-      
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-      
-      console.log('Resume downloaded successfully');
-    } catch (error) {
-      console.error('Error downloading resume:', error);
-      
-      // Fallback to direct link method
-      try {
-        const link = document.createElement('a');
-        link.href = '/resume/Adewale_Samuel_Prime_Resume.pdf';
-        link.target = '_blank';
-        link.download = 'Adewale_Samuel_Prime_Resume.pdf';
-        link.click();
-      } catch (fallbackError) {
-        alert('Unable to download resume. Please contact me directly at primesameade@gmail.com');
-      }
-    }
-  };
 
   /**
    * SCHEDULE CALL HANDLER
@@ -120,7 +72,7 @@ export function Resume({ onNavigate }: ResumeProps) {
               </div>
               
               {/* ACTION BUTTONS */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* View Online Button - Active navigation to resume viewer */}
                 <Button 
                   onClick={handleViewResume}
@@ -142,15 +94,7 @@ export function Resume({ onNavigate }: ResumeProps) {
                   />
                 </div>
                 
-                {/* Static PDF Download Button */}
-                <Button 
-                  onClick={handleDownloadResume}
-                  className="w-full"
-                  variant="outline"
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Download
-                </Button>
+
                 
                 {/* Schedule Call Button - Active scheduling */}
                 <Button 

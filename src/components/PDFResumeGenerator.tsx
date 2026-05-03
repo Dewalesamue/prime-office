@@ -12,6 +12,7 @@
 import React from 'react';
 import { Button } from "./ui/button";
 import { Download } from "lucide-react";
+import html2pdf from 'html2pdf.js';
 
 interface PDFResumeGeneratorProps {
   personalInfo: {
@@ -191,26 +192,16 @@ export function PDFResumeGenerator({
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
-    // Use html2pdf if available
-    if ((window as any).html2pdf) {
-      (window as any).html2pdf().set(opt).from(element).save().then(() => {
-        document.body.removeChild(element);
-      });
-    } else {
-      // Fallback if script didn't load
-      const printWindow = window.open('', '_blank');
-      if (printWindow) {
-        printWindow.document.write(element.innerHTML);
-        printWindow.document.close();
-        setTimeout(() => {
-          printWindow.print();
-          document.body.removeChild(element);
-        }, 500);
-      } else {
-        alert('Unable to generate PDF. Please try again or allow popups.');
+    // Generate and save the PDF
+    html2pdf().set(opt).from(element).save().then(() => {
+      document.body.removeChild(element);
+    }).catch((err: any) => {
+      console.error('Error generating PDF:', err);
+      alert('Unable to generate PDF. Please try again.');
+      if (document.body.contains(element)) {
         document.body.removeChild(element);
       }
-    }
+    });
   };
 
   return (
