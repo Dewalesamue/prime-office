@@ -23,7 +23,7 @@ import { Button } from "./ui/button";
 import { ExternalLink, Github, Star, GitFork, Users, Loader2 } from "lucide-react";
 
 export function GitHubActivity() {
-  const githubUsername = "Prime-code2106";
+  const githubUsername = "Dewalesamue";
   const githubUrl = `https://github.com/${githubUsername}`;
 
   // State for GitHub data

@@ -52,7 +52,7 @@ export function Portfolio({ onNavigate }: PortfolioProps) {
       tags: ["React", "Tailwind CSS", "Vite"],
       technologies: ["React", "Tailwind CSS", "Vite"],
       featured: true,
-      githubUrl: "https://github.com/Prime-code2106/prime-office.git",
+      githubUrl: "https://github.com/Dewalesamue/prime-office.git",
       liveUrl: "https://prime-office-smoky.vercel.app",
       demoType: "web" as const,
       isInteractive: true
@@ -69,7 +69,7 @@ export function Portfolio({ onNavigate }: PortfolioProps) {
       tags: ["React", "Tailwind CSS", "Food API"],
       technologies: ["React", "Tailwind CSS", "Food API"],
       featured: true,
-      githubUrl: "https://github.com/Prime-code2106/adefood.git",
+      githubUrl: "https://github.com/Dewalesamue/adefood.git",
       liveUrl: "https://adefood.netlify.app",
       demoType: "web" as const,
       isInteractive: true

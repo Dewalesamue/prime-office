@@ -49,7 +49,7 @@ export function AllProjects({ onNavigate }: AllProjectsProps) {
       duration: "1 month",
       client: "Personal Project",
       featured: true,
-      githubUrl: "https://github.com/Prime-code2106/prime-office.git",
+      githubUrl: "https://github.com/Dewalesamue/prime-office.git",
       liveUrl: "https://prime-office-smoky.vercel.app",
       completedDate: "2024-01-01",
       screenshots: [
@@ -69,7 +69,7 @@ export function AllProjects({ onNavigate }: AllProjectsProps) {
       duration: "2 months",
       client: "Personal Project",
       featured: true,
-      githubUrl: "https://github.com/Prime-code2106/adefood.git",
+      githubUrl: "https://github.com/Dewalesamue/adefood.git",
       liveUrl: "https://adefood.netlify.app",
       completedDate: "2024-03-01",
       screenshots: [

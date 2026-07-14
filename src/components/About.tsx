@@ -18,8 +18,8 @@ export function About() {
   const isDark = theme === 'dark';
 
   const streakUrl = isDark
-    ? "https://github-readme-streak-stats.herokuapp.com/?user=Prime-code2106&theme=dark&hide_border=true&background=transparent&ring=3b82f6&fire=3b82f6&currStreakNum=ffffff&sideNums=ffffff&dates=aaaaaa&sideLabels=aaaaaa&currStreakLabel=aaaaaa"
-    : "https://github-readme-streak-stats.herokuapp.com/?user=Prime-code2106&theme=default&hide_border=true&background=transparent&ring=3b82f6&fire=3b82f6&currStreakNum=1a1a1a&sideNums=1a1a1a&dates=555555&sideLabels=555555&currStreakLabel=555555";
+    ? "https://github-readme-streak-stats.herokuapp.com/?user=Dewalesamue&theme=dark&hide_border=true&background=transparent&ring=3b82f6&fire=3b82f6&currStreakNum=ffffff&sideNums=ffffff&dates=aaaaaa&sideLabels=aaaaaa&currStreakLabel=aaaaaa"
+    : "https://github-readme-streak-stats.herokuapp.com/?user=Dewalesamue&theme=default&hide_border=true&background=transparent&ring=3b82f6&fire=3b82f6&currStreakNum=1a1a1a&sideNums=1a1a1a&dates=555555&sideLabels=555555&currStreakLabel=555555";
   /**
    * ACHIEVEMENT STATISTICS
    * CUSTOMIZATION: Update these numbers with your actual achievements
@@ -100,7 +100,7 @@ export function About() {
               <p className="text-muted-foreground mt-2">Daily open source contributions</p>
             </div>
             <div className="flex justify-center">
-              <a href="https://github.com/Prime-code2106" target="_blank" rel="noreferrer" className="block w-full max-w-2xl hover:scale-[1.01] transition-transform duration-300">
+              <a href="https://github.com/Dewalesamue" target="_blank" rel="noreferrer" className="block w-full max-w-2xl hover:scale-[1.01] transition-transform duration-300">
                 <img
                   src={streakUrl}
                   alt="GitHub Streak Stats"
