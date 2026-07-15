@@ -30,7 +30,7 @@ export function Hero({ onNavigate }: HeroProps) {
    * PERSONAL/PROFESSIONAL IMAGE URL
    * CUSTOMIZATION: Uses hero image from public folder
    */
-  const personalImageUrl = '/images/dewalesamue.jpg';
+  const personalImageUrl = '/images/dewalesamue.png';
 
   /**
    * SCROLL TO SECTION HANDLER
