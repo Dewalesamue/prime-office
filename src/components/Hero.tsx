@@ -29,7 +29,7 @@ export function Hero({ onNavigate }: HeroProps) {
    * PERSONAL/PROFESSIONAL IMAGE URL
    * CUSTOMIZATION: Uses hero image from public folder
    */
-  const personalImageUrl = '/images/heroimage.png';
+  const personalImageUrl = '/images/dewalesamue.jpg';
 
   /**
    * SCROLL TO SECTION HANDLER
@@ -75,10 +75,10 @@ export function Hero({ onNavigate }: HeroProps) {
               {/* MAIN HEADING - Your name and title */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Hello, I'm{" "}
-                <span className="text-yellow-400">Adewale Samuel</span>
+                <span className="text-yellow-400">Dewalesamue</span>
               </h1>
               <p className="text-xl text-gray-200">
-                Nickname: <span className="text-yellow-400 font-semibold">dewalesamue</span>
+                Nickname: <span className="text-yellow-400 font-semibold">Dewalesamue (Prime)</span>
               </p>
             </div>
             
@@ -143,7 +143,7 @@ export function Hero({ onNavigate }: HeroProps) {
               {/* PROFESSIONAL IMAGE - Replace with your photo */}
               <ImageWithFallback
                 src={personalImageUrl}
-                alt="Adewale Samuel - Professional Developer"
+                alt="Dewalesamue - Professional Developer"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
               {/* Image overlay for visual effect */}

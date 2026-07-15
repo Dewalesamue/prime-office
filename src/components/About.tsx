@@ -59,7 +59,7 @@ export function About() {
         <div className="max-w-4xl mx-auto">
           {/* SECTION HEADER */}
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">About Adewale Samuel (Prime)</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">About Dewalesamue (Prime)</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Information Technology student passionate about crafting seamless web experiences
             </p>
@@ -82,7 +82,7 @@ export function About() {
           {/* MAIN ABOUT CONTENT */}
           <div className="space-y-6 text-lg text-muted-foreground leading-relaxed text-center max-w-2xl mx-auto">
             <p>
-              I'm <strong className="text-foreground">Adewale Samuel (Prime)</strong>, an Information Technology student at FUTA 
+              I'm <strong className="text-foreground">Dewalesamue (Prime)</strong>, an Information Technology student at FUTA 
               specializing in frontend engineering and building modern web applications. 
               I focus on creating high-performance, user-centered solutions using React, Tailwind CSS, and Supabase.
             </p>

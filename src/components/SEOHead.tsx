@@ -36,8 +36,8 @@ export function SEOHead({
   image = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=630&fit=crop",
   url = "https://adewale-samuel.vercel.app", // 👈 CHANGE TO YOUR DOMAIN
   type = "website",
-  author = "Adewale Samuel",
-  twitterHandle = "@dewalesamue"
+  author = "Dewalesamue",
+  twitterHandle = "@Dewalesamue"
 }: SEOHeadProps) {
   
   useEffect(() => {
@@ -98,7 +98,7 @@ export function SEOHead({
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Adewale Samuel",
+      "name": "Dewalesamue",
       "alternateName": "Prime",
       "jobTitle": "Frontend Engineer",
       "description": description,

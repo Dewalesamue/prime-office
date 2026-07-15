@@ -102,28 +102,39 @@ export function PDFResumeGenerator({
         });
       };
 
+      // Header: Name, Nickname, and Contact
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(24);
+      doc.setFontSize(22);
       doc.text(personalInfo.name, margin, y);
-      y += 28;
+      y += 22;
 
       doc.setFont('helvetica', 'italic');
       doc.setFontSize(12);
-      doc.text(`"${personalInfo.nickname}"`, margin, y);
-      y += 18;
+      doc.text(`${personalInfo.nickname}`, margin, y);
+      y += 16;
+
+      doc.setDrawColor(200);
+      doc.setLineWidth(0.5);
+      doc.line(margin, y, pageWidth - margin, y);
+      y += 14;
 
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(11);
-      doc.text(`${personalInfo.title}`, margin, y);
-      y += 18;
-      doc.text(`${personalInfo.location} • ${personalInfo.email} • ${personalInfo.phone}`, margin, y);
-      y += 24;
+      doc.setFontSize(10);
+      const contactLine = `${personalInfo.title}  •  ${personalInfo.location}  •  ${personalInfo.email}  •  ${personalInfo.phone}`;
+      const contactLines = doc.splitTextToSize(contactLine, pageWidth - (margin * 2));
+      contactLines.forEach((line) => {
+        doc.text(line, margin, y);
+        y += 12;
+      });
+      y += 8;
 
-      addText('Professional Summary', 14, 'bold');
+      // Professional Summary
+      addText('Professional Summary', 13, 'bold');
       addText(personalInfo.summary || 'No summary provided yet.');
       y += 8;
 
-      addText('Work Experience', 14, 'bold');
+      // Work Experience
+      addText('Work Experience', 13, 'bold');
       workExperience.length > 0 ? workExperience.forEach((job) => {
         addText(`${job.position} — ${job.company}`, 11, 'bold');
         addText(`${job.duration} • ${job.location}`);
@@ -132,7 +143,8 @@ export function PDFResumeGenerator({
       }) : addText('No work experience listed.');
       y += 6;
 
-      addText('Education', 14, 'bold');
+      // Education
+      addText('Education', 13, 'bold');
       education.length > 0 ? education.forEach((edu) => {
         addText(`${edu.degree} — ${edu.institution}`, 11, 'bold');
         addText(`${edu.duration} • ${edu.location}`);
@@ -142,7 +154,8 @@ export function PDFResumeGenerator({
       }) : addText('No education details listed.');
       y += 6;
 
-      addText('Technical Skills', 14, 'bold');
+      // Technical Skills
+      addText('Technical Skills', 13, 'bold');
       addText(`Frontend: ${skills.frontend.join(', ') || 'N/A'}`);
       addText(`Backend & Auth: ${skills.backend.join(', ') || 'N/A'}`);
       addText(`Generative AI: ${skills.ai.join(', ') || 'N/A'}`);
@@ -150,13 +163,16 @@ export function PDFResumeGenerator({
       addText(`Soft Skills: ${skills.soft.join(', ') || 'N/A'}`);
       y += 6;
 
-      addText('Certifications', 14, 'bold');
+      // Certifications
+      addText('Certifications', 13, 'bold');
       certifications.length > 0 ? certifications.forEach((cert) => {
         addText(`${cert.name} — ${cert.issuer}`, 11, 'bold');
         addText(`${cert.date} • ID: ${cert.id}`);
       }) : addText('No certifications listed.');
 
-      doc.save(`${personalInfo.name}_Resume.pdf`);
+      // Save with a safe filename
+      const safeName = personalInfo.name.replace(/[^a-z0-9\-\_ ]/gi, '').replace(/\s+/g, '_');
+      doc.save(`${safeName}_Resume.pdf`);
     } catch (err) {
       console.error('Error generating PDF:', err);
       alert('Unable to generate PDF. Please try again.');
