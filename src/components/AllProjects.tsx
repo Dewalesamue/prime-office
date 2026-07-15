@@ -18,6 +18,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { LiveProjectViewer } from "./LiveProjectViewer";
 import { ArrowLeft, ExternalLink, Github, Calendar, User, Star, Eye, Play } from "lucide-react";
 import { PageType } from "../App";
+import { SlideUp } from "./ScrollReveal";
 
 interface AllProjectsProps {
   onNavigate: (page: PageType) => void;
@@ -206,8 +207,9 @@ export function AllProjects({ onNavigate }: AllProjectsProps) {
 
         {/* PROJECTS GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+          {filteredProjects.map((project, index) => (
+            <SlideUp key={project.id} delay={index * 0.05}>
+              <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
               {/* PROJECT IMAGE */}
               <div className="relative h-48 overflow-hidden">
                 <ImageWithFallback
@@ -340,7 +342,8 @@ export function AllProjects({ onNavigate }: AllProjectsProps) {
                   </Button>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </SlideUp>
           ))}
         </div>
 

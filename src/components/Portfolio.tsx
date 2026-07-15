@@ -17,6 +17,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { LiveProjectViewer } from "./LiveProjectViewer";
 import { ExternalLink, Github, Eye, Play } from "lucide-react";
 import { PageType } from "../App";
+import { SlideUp, StaggerChildren } from "./ScrollReveal";
 
 interface PortfolioProps {
   onNavigate: (page: PageType) => void;
@@ -107,7 +108,8 @@ export function Portfolio({ onNavigate }: PortfolioProps) {
         {/* PORTFOLIO GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolioItems.map((item, index) => (
-            <Card key={index} className={`overflow-hidden hover:shadow-lg transition-shadow group ${item.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}>
+            <SlideUp key={index} delay={index * 0.06}>
+              <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${item.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}>
               {/* PROJECT IMAGE WITH OVERLAY */}
               <div className="relative h-48 overflow-hidden">
                 <ImageWithFallback
@@ -187,7 +189,8 @@ export function Portfolio({ onNavigate }: PortfolioProps) {
                   </Button>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </SlideUp>
           ))}
         </div>
         

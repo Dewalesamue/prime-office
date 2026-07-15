@@ -28,6 +28,7 @@ import { ResumeViewer } from "./components/ResumeViewer";
 import { LiveDemosPage } from "./components/LiveDemosPage";
 import { TestimonialsPage } from "./components/TestimonialsPage";
 import { ProcessTeaser } from "./components/ProcessTeaser";
+import { ScrollProgress } from "./components/ScrollProgress";
 
 // Define available pages for navigation
 export type PageType = 'home' | 'skills' | 'projects' | 'resume-view' | 'work-process' | 'live-demos' | 'testimonials';
@@ -129,6 +130,7 @@ export default function App() {
   return (
     <ThemeProvider defaultTheme="dark">
       <div className="min-h-screen bg-background transition-colors duration-300">
+        <ScrollProgress />
         {/* HEADER NAVIGATION - Fixed top navigation */}
         <Header currentPage={currentPage} onNavigate={handleNavigate} />
         
