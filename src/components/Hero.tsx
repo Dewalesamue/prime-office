@@ -12,7 +12,6 @@
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import personalImage from "../image/Gemini_Generated_Image_5xu7i15xu7i15xu7.png";
 
 interface HeroProps {
   onNavigate: (page: PageType) => void;
@@ -28,9 +27,9 @@ export function Hero({ onNavigate }: HeroProps) {
 
   /**
    * PERSONAL/PROFESSIONAL IMAGE URL
-   * CUSTOMIZATION: Replace this with your professional headshot or workspace image
+   * CUSTOMIZATION: Uses hero image from public folder
    */
-  const personalImageUrl = personalImage;
+  const personalImageUrl = encodeURI('/images/hero section image /heroimage.png');
 
   /**
    * SCROLL TO SECTION HANDLER
