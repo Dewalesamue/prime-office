@@ -12,6 +12,7 @@
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { StaggerChildren, SlideUp, ScaleIn } from "./ScrollReveal";
 
 interface HeroProps {
   onNavigate: (page: PageType) => void;
@@ -66,86 +67,103 @@ export function Hero({ onNavigate }: HeroProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* LEFT COLUMN - Main introduction content */}
           <div className="space-y-6 text-white">
-            <div className="space-y-2">
-              {/* AVAILABILITY STATUS - Update this badge as needed */}
-              <Badge variant="secondary" className="mb-4 bg-primary text-primary-foreground">
-                🌍 Available for Remote Work
-              </Badge>
-              
-              {/* MAIN HEADING - Your name and title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Hello, I'm{" "}
-                <span className="text-yellow-400">Dewalesamue</span>
-              </h1>
-              <p className="text-xl text-gray-200">
-                Nickname: <span className="text-yellow-400 font-semibold">Dewalesamue (Prime)</span>
-              </p>
-            </div>
-            
-            {/* DESCRIPTION - Brief introduction */}
-            <p className="text-lg text-gray-200 leading-relaxed">
-              Frontend Engineer specializing in building modern, user-centered web applications 
-              with React, Tailwind CSS, and Supabase. Information Technology student at FUTA.
-            </p>
-            
-            {/* SKILL BADGES - Main expertise areas */}
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="outline" className="bg-white/10 text-white border-white/30">Frontend Development</Badge>
-              <Badge variant="outline" className="bg-white/10 text-white border-white/30">Web Applications</Badge>
-              <Badge variant="outline" className="bg-white/10 text-white border-white/30">Supabase Integration</Badge>
-            </div>
-            
-            {/* CALL-TO-ACTION BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              {/* View Portfolio Button */}
-              <Button 
-                size="lg"
-                onClick={() => scrollToSection('portfolio')}
-                className="bg-primary hover:bg-primary/90"
-              >
-                View My Work
-              </Button>
-              
-              {/* Try Live Demos Button - NEW FEATURE */}
-              <Button 
-                size="lg"
-                onClick={() => onNavigate('live-demos')}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0"
-              >
-                🚀 Try Live Demos
-              </Button>
-              
-              {/* Schedule Call Button - Active with external link */}
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={handleScheduleCall}
-                className="border-white text-white hover:bg-white/10 hover:border-white/80 transition-colors"
-              >
-                Schedule a Call
-              </Button>
-              
-              {/* Contact Button */}
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={() => scrollToSection('contact')}
-                className="border-white text-white hover:bg-white/10 hover:border-white/80 transition-colors"
-              >
-                Get in Touch
-              </Button>
-            </div>
+            <StaggerChildren staggerDelay={0.12} direction="up">
+              <div className="space-y-2">
+                {/* AVAILABILITY STATUS - Update this badge as needed */}
+                <SlideUp delay={0}>
+                  <Badge variant="secondary" className="mb-4 bg-primary text-primary-foreground">
+                    🌍 Available for Remote Work
+                  </Badge>
+                </SlideUp>
+
+                {/* MAIN HEADING - Your name and title */}
+                <SlideUp delay={0.06}>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    Hello, I'm{" "}
+                    <span className="text-yellow-400">Dewalesamue</span>
+                  </h1>
+                </SlideUp>
+
+                <SlideUp delay={0.12}>
+                  <p className="text-xl text-gray-200">
+                    Nickname: <span className="text-yellow-400 font-semibold">Dewalesamue (Prime)</span>
+                  </p>
+                </SlideUp>
+              </div>
+
+              {/* DESCRIPTION - Brief introduction */}
+              <SlideUp delay={0.18}>
+                <p className="text-lg text-gray-200 leading-relaxed">
+                  Frontend Engineer specializing in building modern, user-centered web applications 
+                  with React, Tailwind CSS, and Supabase. Information Technology student at FUTA.
+                </p>
+              </SlideUp>
+
+              {/* SKILL BADGES - Main expertise areas */}
+              <SlideUp delay={0.24}>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="bg-white/10 text-white border-white/30">Frontend Development</Badge>
+                  <Badge variant="outline" className="bg-white/10 text-white border-white/30">Web Applications</Badge>
+                  <Badge variant="outline" className="bg-white/10 text-white border-white/30">Supabase Integration</Badge>
+                </div>
+              </SlideUp>
+
+              {/* CALL-TO-ACTION BUTTONS */}
+              <SlideUp delay={0.3}>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  {/* View Portfolio Button */}
+                  <Button 
+                    size="lg"
+                    onClick={() => scrollToSection('portfolio')}
+                    className="bg-primary hover:bg-primary/90"
+                  >
+                    View My Work
+                  </Button>
+                  
+                  {/* Try Live Demos Button - NEW FEATURE */}
+                  <Button 
+                    size="lg"
+                    onClick={() => onNavigate('live-demos')}
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0"
+                  >
+                    🚀 Try Live Demos
+                  </Button>
+                  
+                  {/* Schedule Call Button - Active with external link */}
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    onClick={handleScheduleCall}
+                    className="border-white text-white hover:bg-white/10 hover:border-white/80 transition-colors"
+                  >
+                    Schedule a Call
+                  </Button>
+                  
+                  {/* Contact Button */}
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    onClick={() => scrollToSection('contact')}
+                    className="border-white text-white hover:bg-white/10 hover:border-white/80 transition-colors"
+                  >
+                    Get in Touch
+                  </Button>
+                </div>
+              </SlideUp>
+            </StaggerChildren>
           </div>
           
           {/* RIGHT COLUMN - Professional image */}
           <div className="relative">
             <div className="relative">
               {/* PROFESSIONAL IMAGE - Replace with your photo */}
-              <ImageWithFallback
-                src={personalImageUrl}
-                alt="Dewalesamue - Professional Developer"
-                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
-              />
+              <ScaleIn delay={0.12}>
+                <ImageWithFallback
+                  src={personalImageUrl}
+                  alt="Dewalesamue - Professional Developer"
+                  className="w-full h-96 object-cover rounded-2xl shadow-2xl"
+                />
+              </ScaleIn>
               {/* Image overlay for visual effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent rounded-2xl" />
               
