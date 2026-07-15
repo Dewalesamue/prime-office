@@ -33,7 +33,7 @@ export function SEOHead({
   title = "Adewale Samuel (Prime) - Frontend Engineer | Web Application Expert",
   description = "Experienced Frontend Engineer specializing in React, Tailwind CSS, and Supabase. Building clean, performant, and scalable web applications.",
   keywords = "Frontend Engineer, Web Developer, React Developer, Supabase Expert, Tailwind CSS, Lagos Nigeria, Remote Developer",
-  image = "/images/dewalesamue.png", // simple path to profile image in /public/images
+  image = "/images/dewalesamue-og.jpg", // og-sized image (useful for social previews)
   url = "https://prime-office.netlify.app/", // 👈 CHANGE TO YOUR DOMAIN
   type = "website",
   author = "Dewalesamue",
