@@ -12,7 +12,7 @@
 import React from 'react';
 import { Button } from "./ui/button";
 import { Download } from "lucide-react";
-import html2pdf from 'html2pdf.js';
+import { jsPDF } from 'jspdf';
 
 interface PDFResumeGeneratorProps {
   personalInfo: {
@@ -70,138 +70,97 @@ export function PDFResumeGenerator({
    * Creates a PDF version of the resume and triggers a direct download
    */
   const generatePDFResume = () => {
-    // Create a temporary container to hold the resume HTML
-    const element = document.createElement('div');
-    element.style.position = 'absolute';
-    element.style.left = '-9999px';
-    element.style.top = '-9999px';
-    element.style.width = '800px'; // Standard width for PDF generation
-    
-    // Resume HTML content (same as before but optimized for html2pdf)
-    element.innerHTML = `
-      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; padding: 40px; background: white;">
-        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 20px;">
-          <h1 style="font-size: 28px; font-weight: bold; margin-bottom: 5px;">${personalInfo.name}</h1>
-          <div style="font-size: 16px; color: #666; font-style: italic; margin-bottom: 8px;">"${personalInfo.nickname}"</div>
-          <div style="font-size: 18px; color: #444; font-weight: 600; margin-bottom: 15px;">${personalInfo.title}</div>
-          <div style="display: flex; justify-content: center; gap: 15px; font-size: 12px; flex-wrap: wrap;">
-            <span>📍 ${personalInfo.location}</span>
-            <span>✉️ ${personalInfo.email}</span>
-            <span>📞 ${personalInfo.phone}</span>
-            <span>🌐 Portfolio</span>
-          </div>
-        </div>
+    try {
+      const doc = new jsPDF({ unit: 'pt', format: 'letter', orientation: 'portrait' });
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 36;
+      let y = margin;
 
-        <div style="margin-bottom: 25px;">
-          <h2 style="font-size: 18px; font-weight: bold; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Professional Summary</h2>
-          <div style="font-size: 13px; line-height: 1.6; color: #555; text-align: justify;">
-            ${personalInfo.summary}
-          </div>
-        </div>
+      const addText = (text: string, fontSize = 10, style: 'normal' | 'bold' | 'italic' = 'normal') => {
+        if (y > pageHeight - margin - 20) {
+          doc.addPage();
+          y = margin;
+        }
 
-        <div style="margin-bottom: 25px;">
-          <h2 style="font-size: 18px; font-weight: bold; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Work Experience</h2>
-          ${workExperience.map(job => `
-            <div style="margin-bottom: 20px;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                <div>
-                  <div style="font-weight: bold; font-size: 14px;">${job.position}</div>
-                  <div style="color: #555; font-size: 13px;">${job.company}</div>
-                </div>
-                <div style="text-align: right;">
-                  <div style="font-size: 12px; color: #666;">${job.duration}</div>
-                  <div style="font-size: 12px; color: #666;">${job.location}</div>
-                </div>
-              </div>
-              <ul style="list-style-type: disc; margin-left: 20px; font-size: 12px; color: #555;">
-                ${job.responsibilities.map(resp => `<li style="margin-bottom: 3px;">${resp}</li>`).join('')}
-              </ul>
-            </div>
-          `).join('')}
-        </div>
+        doc.setFont('helvetica', style);
+        doc.setFontSize(fontSize);
+        const lines = doc.splitTextToSize(text || '', pageWidth - (margin * 2));
+        lines.forEach((line: string) => {
+          if (y > pageHeight - margin - 12) {
+            doc.addPage();
+            y = margin;
+          }
+          doc.text(line, margin, y);
+          y += fontSize * 1.35;
+        });
+      };
 
-        <div style="margin-bottom: 25px;">
-          <h2 style="font-size: 18px; font-weight: bold; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Education</h2>
-          ${education.map(edu => `
-            <div style="margin-bottom: 15px;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <div>
-                  <div style="font-weight: bold; font-size: 14px;">${edu.degree}</div>
-                  <div style="color: #555; font-size: 13px;">${edu.institution} - ${edu.honors}</div>
-                </div>
-                <div style="text-align: right;">
-                  <div style="font-size: 12px; color: #666;">${edu.duration}</div>
-                  <div style="font-size: 12px; color: #666;">${edu.location}</div>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
+      const addBulletPoints = (items: string[]) => {
+        items.forEach((item) => {
+          addText(`• ${item}`);
+        });
+      };
 
-        <div style="margin-bottom: 25px;">
-          <h2 style="font-size: 18px; font-weight: bold; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Technical Skills</h2>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-              <div style="margin-bottom: 10px;">
-                <h4 style="font-size: 13px; font-weight: bold; margin-bottom: 5px;">Frontend Development</h4>
-                <div style="font-size: 11px; color: #555;">${skills.frontend.join(', ')}</div>
-              </div>
-              <div style="margin-bottom: 10px;">
-                <h4 style="font-size: 13px; font-weight: bold; margin-bottom: 5px;">Backend & Auth</h4>
-                <div style="font-size: 11px; color: #555;">${skills.backend.join(', ')}</div>
-              </div>
-            </div>
-            <div>
-              <div style="margin-bottom: 10px;">
-                <h4 style="font-size: 13px; font-weight: bold; margin-bottom: 5px;">Generative AI</h4>
-                <div style="font-size: 11px; color: #555;">${skills.ai.join(', ')}</div>
-              </div>
-              <div style="margin-bottom: 10px;">
-                <h4 style="font-size: 13px; font-weight: bold; margin-bottom: 5px;">Tools</h4>
-                <div style="font-size: 11px; color: #555;">${skills.tools.join(', ')}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(24);
+      doc.text(personalInfo.name, margin, y);
+      y += 28;
 
-        <div>
-          <h2 style="font-size: 18px; font-weight: bold; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Certifications</h2>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            ${certifications.map(cert => `
-              <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #f9f9f9;">
-                <div style="font-weight: bold; font-size: 12px; margin-bottom: 3px;">${cert.name}</div>
-                <div style="color: #555; font-size: 11px;">${cert.issuer}</div>
-                <div style="display: flex; justify-content: space-between; font-size: 10px; color: #666; margin-top: 5px;">
-                  <span>${cert.date}</span>
-                  <span>ID: ${cert.id}</span>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(12);
+      doc.text(`"${personalInfo.nickname}"`, margin, y);
+      y += 18;
 
-    document.body.appendChild(element);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      doc.text(`${personalInfo.title}`, margin, y);
+      y += 18;
+      doc.text(`${personalInfo.location} • ${personalInfo.email} • ${personalInfo.phone}`, margin, y);
+      y += 24;
 
-    const opt = {
-      margin:       0.5,
-      filename:     `${personalInfo.name}_Resume.pdf`,
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
+      addText('Professional Summary', 14, 'bold');
+      addText(personalInfo.summary || 'No summary provided yet.');
+      y += 8;
 
-    // Generate and save the PDF
-    html2pdf().set(opt).from(element).save().then(() => {
-      document.body.removeChild(element);
-    }).catch((err: any) => {
+      addText('Work Experience', 14, 'bold');
+      workExperience.length > 0 ? workExperience.forEach((job) => {
+        addText(`${job.position} — ${job.company}`, 11, 'bold');
+        addText(`${job.duration} • ${job.location}`);
+        addBulletPoints(job.responsibilities);
+        y += 6;
+      }) : addText('No work experience listed.');
+      y += 6;
+
+      addText('Education', 14, 'bold');
+      education.length > 0 ? education.forEach((edu) => {
+        addText(`${edu.degree} — ${edu.institution}`, 11, 'bold');
+        addText(`${edu.duration} • ${edu.location}`);
+        addText(edu.honors || '');
+        addBulletPoints(edu.achievements);
+        y += 6;
+      }) : addText('No education details listed.');
+      y += 6;
+
+      addText('Technical Skills', 14, 'bold');
+      addText(`Frontend: ${skills.frontend.join(', ') || 'N/A'}`);
+      addText(`Backend & Auth: ${skills.backend.join(', ') || 'N/A'}`);
+      addText(`Generative AI: ${skills.ai.join(', ') || 'N/A'}`);
+      addText(`Tools: ${skills.tools.join(', ') || 'N/A'}`);
+      addText(`Soft Skills: ${skills.soft.join(', ') || 'N/A'}`);
+      y += 6;
+
+      addText('Certifications', 14, 'bold');
+      certifications.length > 0 ? certifications.forEach((cert) => {
+        addText(`${cert.name} — ${cert.issuer}`, 11, 'bold');
+        addText(`${cert.date} • ID: ${cert.id}`);
+      }) : addText('No certifications listed.');
+
+      doc.save(`${personalInfo.name}_Resume.pdf`);
+    } catch (err) {
       console.error('Error generating PDF:', err);
       alert('Unable to generate PDF. Please try again.');
-      if (document.body.contains(element)) {
-        document.body.removeChild(element);
-      }
-    });
+    }
   };
 
   return (
