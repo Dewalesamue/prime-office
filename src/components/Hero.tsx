@@ -29,7 +29,7 @@ export function Hero({ onNavigate }: HeroProps) {
    * PERSONAL/PROFESSIONAL IMAGE URL
    * CUSTOMIZATION: Uses hero image from public folder
    */
-  const personalImageUrl = encodeURI('/images/hero section image /heroimage.png');
+  const personalImageUrl = '/images/heroimage.png';
 
   /**
    * SCROLL TO SECTION HANDLER
