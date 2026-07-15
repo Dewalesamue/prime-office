@@ -16,7 +16,7 @@ export const resumeData = {
    */
   personalInfo: {
     name: "Adewale Samuel",
-    nickname: "Prime",
+    nickname: "dewalesamue",
     title: "Frontend Engineer | Web Application Developer | Supabase Specialist",
     location: "Akure, Ondo State, Nigeria (Available Worldwide)",
     email: "primesameade@gmail.com",

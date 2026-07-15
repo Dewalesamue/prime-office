@@ -79,7 +79,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 <span className="text-yellow-400">Adewale Samuel</span>
               </h1>
               <p className="text-xl text-gray-200">
-                Nickname: <span className="text-yellow-400 font-semibold">Prime</span>
+                Nickname: <span className="text-yellow-400 font-semibold">dewalesamue</span>
               </p>
             </div>
             
