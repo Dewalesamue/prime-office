@@ -85,6 +85,19 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'Leaflet / Maps', 'Tailwind CSS'],
     description: 'Interactive campus navigation map for FUTA students and visitors.',
   },
+  {
+    number: '07',
+    name: '44StreetLuxe',
+    category: 'Fashion & E-Commerce',
+    liveUrl: 'https://44streetluxe.com',
+    githubUrl: 'https://github.com/Dewalesamue/44streetluxe.git',
+    col1img1: '/images/dewalesamue-og.jpg',
+    col1img2: '/images/dewalesamue.png',
+    col2img: '/images/dewalesamue-og.jpg',
+    tags: ['React', 'E-Commerce', 'Tailwind CSS'],
+    description:
+      '44th Street — clothing for a generation unafraid to stand out. Graffiti walls, neon lights, raw concrete textures — every piece transforms street energy into wearable art.',
+  },
 ]
 
 const TOTAL = PROJECTS.length
@@ -97,14 +110,14 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(innerRef, { once: true, margin: '-40px' })
+  const isInView = useInView(innerRef, { once: true, margin: '0px' })
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   })
 
-  const scaleEnd = 1 - (TOTAL - 1 - index) * 0.03
+  const scaleEnd = Math.max(0.85, 1 - (TOTAL - 1 - index) * 0.03)
   const scale = useTransform(scrollYProgress, [0, 0.75], [1, scaleEnd])
 
   // On mobile use smaller parallax to avoid layout shifts
@@ -117,8 +130,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   return (
     <div
       ref={containerRef}
-      // Shorter on mobile so it doesn't feel endless
-      className="h-[70vh] sm:h-[80vh] md:h-[90vh]"
+      // Last card needs extra height so it fully scrolls into view
+      className={`${index === TOTAL - 1 ? 'h-[110vh]' : 'h-[70vh] sm:h-[80vh] md:h-[90vh]'}`}
     >
       <motion.div
         className="sticky w-full"
