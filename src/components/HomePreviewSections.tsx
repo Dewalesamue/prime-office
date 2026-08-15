@@ -152,7 +152,7 @@ const HomePreviewSections: React.FC = () => {
               {[
                 { name: 'Prime Office', cat: 'Personal Branding', img: '/images/myportfolio.jpg', url: 'https://prime-office-smoky.vercel.app' },
                 { name: 'Adefood', cat: 'Web Application', img: '/images/adefood.jpg', url: 'https://adefood.netlify.app' },
-                { name: 'MedAssist AI', cat: 'AI Platform', img: '/images/medai.jpg', url: 'https://med-assis.netlify.app' },
+                { name: '44StreetLuxe', cat: 'Fashion & E-Commerce', img: '/images/image copy.png', url: 'https://44streetluxe.com' },
               ].map((p) => (
                 <motion.a
                   key={p.name}
@@ -183,7 +183,7 @@ const HomePreviewSections: React.FC = () => {
               ))}
             </div>
             <div className="flex justify-center pt-2">
-              <ReadMore to="/projects" label="View All 6 Projects" />
+              <ReadMore to="/projects" label="View All 7 Projects" />
             </div>
           </div>
         </section>

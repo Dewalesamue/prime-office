@@ -91,9 +91,9 @@ export const PROJECTS: Project[] = [
     category: 'Fashion & E-Commerce',
     liveUrl: 'https://44streetluxe.com',
     githubUrl: 'https://github.com/Dewalesamue/44streetluxe.git',
-    col1img1: '/images/dewalesamue-og.jpg',
-    col1img2: '/images/dewalesamue.png',
-    col2img: '/images/dewalesamue-og.jpg',
+    col1img1: '/images/image.png',
+    col1img2: '/images/image copy.png',
+    col2img: '/images/image copy.png',
     tags: ['React', 'E-Commerce', 'Tailwind CSS'],
     description:
       '44th Street — clothing for a generation unafraid to stand out. Graffiti walls, neon lights, raw concrete textures — every piece transforms street energy into wearable art.',
