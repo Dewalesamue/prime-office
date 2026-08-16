@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import FadeIn from './FadeIn'
 import AnimatedText from './AnimatedText'
 import ContactButton from './ContactButton'
+import GitHubActivity from './GitHubActivity'
 
 const ABOUT_TEXT =
   "I'm Dewalesamue (Prime), a Frontend Engineer and Information Technology student at FUTA. I specialize in building modern, high-performance web applications using React, Tailwind CSS, and Supabase. With 2+ years of experience and 15+ projects delivered, I enjoy working with clients worldwide to create fast, secure, and user-centered digital experiences. Let's build something great together."
@@ -90,21 +91,9 @@ const AboutSection: React.FC = () => {
           style={{ fontSize: 'clamp(0.9rem, 1.8vw, 1.25rem)' }}
         />
 
-        {/* GitHub streak */}
+        {/* GitHub activity — live data, custom layout */}
         <FadeIn delay={0.2} y={20} className="w-full">
-          <a
-            href="https://github.com/Dewalesamue"
-            target="_blank"
-            rel="noreferrer"
-            className="block w-full hover:scale-[1.02] transition-transform duration-300"
-          >
-            <img
-              src="https://github-readme-streak-stats.herokuapp.com/?user=Dewalesamue&theme=dark&hide_border=true&background=transparent&ring=D7E2EA&fire=BBCCD7&currStreakNum=ffffff&sideNums=ffffff&dates=888888&sideLabels=888888&currStreakLabel=888888"
-              alt="GitHub Streak Stats"
-              className="w-full rounded-2xl"
-              loading="lazy"
-            />
-          </a>
+          <GitHubActivity />
         </FadeIn>
 
         <Link to="/contact">
