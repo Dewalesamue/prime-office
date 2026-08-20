@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import SEO from '../components/SEO'
 import FadeIn from '../components/FadeIn'
 
 const RESUME = {
@@ -99,6 +100,12 @@ const Block: React.FC<{ title: string; children: React.ReactNode }> = ({ title, 
 const ResumePage: React.FC = () => {
   return (
     <div className="bg-[#0C0C0C] min-h-screen pt-24 pb-24 px-5 sm:px-8 md:px-12">
+      <SEO
+        title="Resume — Adewale Samuel (Dewalesamue) | Frontend Engineer"
+        description="Official resume of Adewale Samuel (Dewalesamue). Frontend Engineer with 2+ years experience in React, TypeScript, Tailwind CSS, and Supabase. B.Tech student at FUTA. Available for remote work."
+        keywords="Adewale Samuel resume, Dewalesamue CV, frontend engineer resume Nigeria, React developer CV, FUTA student resume"
+        url="https://dewalesamue.vercel.app/resume"
+      />
       <div className="max-w-4xl mx-auto flex flex-col gap-20">
 
         {/* ── Header ── */}

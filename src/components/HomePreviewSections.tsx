@@ -24,6 +24,31 @@ const ReadMore: React.FC<{ to: string; label?: string; dark?: boolean }> = ({
   </Link>
 )
 
+// ── WIP projects ──────────────────────────────────────────────────────────
+const WIP = [
+  {
+    name: 'Dewalesamue v2',
+    desc: 'Rebuilding my personal portfolio from the ground up with new design system.',
+    status: 'In Progress',
+    stack: ['React', 'Framer Motion', 'Tailwind'],
+    progress: 75,
+  },
+  {
+    name: 'ADE-AI Assistant',
+    desc: 'A smart AI-powered assistant for developers that helps with code reviews and suggestions.',
+    status: 'Building',
+    stack: ['Python', 'Gemini API', 'Supabase'],
+    progress: 40,
+  },
+  {
+    name: '44StreetLuxe v2',
+    desc: 'Full e-commerce rewrite with cart, checkout, and real-time inventory management.',
+    status: 'Planning',
+    stack: ['React', 'Supabase', 'PostgreSQL'],
+    progress: 15,
+  },
+]
+
 const HomePreviewSections: React.FC = () => {
   return (
     <div className="bg-[#0C0C0C] flex flex-col overflow-x-hidden">
@@ -67,9 +92,9 @@ const HomePreviewSections: React.FC = () => {
               </div>
               <div className="flex flex-col gap-5">
                 <p className="text-[#D7E2EA] font-light leading-relaxed opacity-70 text-sm sm:text-base">
-                  Frontend Engineer and Information Technology student at FUTA, specializing in
-                  React, Tailwind CSS, and Supabase. I build modern, high-performance web
-                  applications for clients worldwide.
+                  Adewale is a Nigerian software engineer and product builder specializing in
+                  distributed systems, scalable applications, SaaS, and modern web technologies.
+                  Explore his projects, engineering work, and technical writing.
                 </p>
                 <ReadMore to="/about" label="Full Story" />
               </div>
@@ -189,7 +214,109 @@ const HomePreviewSections: React.FC = () => {
         </section>
       </FadeIn>
 
-      {/* ══ 4. SKILLS ═══════════════════════════════════════════════════ */}
+      {/* ══ 4. CURRENTLY BUILDING ═══════════════════════════════════════ */}
+      <FadeIn y={40}>
+        <section className="bg-[#0C0C0C] px-4 sm:px-8 md:px-12 py-16 sm:py-24 md:py-32">
+          <div className="max-w-5xl mx-auto flex flex-col gap-8 sm:gap-10">
+            <div className="flex items-end justify-between gap-3 flex-wrap">
+              <div className="flex flex-col gap-1">
+                <span className="text-[#D7E2EA] opacity-40 font-light uppercase tracking-widest text-xs">
+                  Work in progress
+                </span>
+                <h2
+                  className="hero-heading font-black uppercase leading-none tracking-tight"
+                  style={{ fontSize: 'clamp(2rem, 7vw, 100px)' }}
+                >
+                  Currently Building
+                </h2>
+              </div>
+              {/* Live indicator */}
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-[#D7E2EA] opacity-40 font-light uppercase tracking-widest text-xs">
+                  Active
+                </span>
+              </div>
+            </div>
+            <div className="w-full h-px bg-[#D7E2EA]/10" />
+
+            <div className="flex flex-col gap-4">
+              {WIP.map((project, i) => (
+                <motion.div
+                  key={project.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="border border-[#D7E2EA]/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6
+                             hover:border-[#D7E2EA]/25 transition-colors duration-200"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                    {/* Left */}
+                    <div className="flex-1 flex flex-col gap-2">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <span
+                          className="text-[#D7E2EA] font-medium uppercase tracking-wide"
+                          style={{ fontSize: 'clamp(0.9rem, 1.6vw, 1.2rem)' }}
+                        >
+                          {project.name}
+                        </span>
+                        {/* Status badge */}
+                        <span className={`text-[10px] uppercase tracking-widest font-medium
+                                          rounded-full px-2.5 py-0.5 border
+                                          ${project.status === 'In Progress'
+                                            ? 'text-green-400 border-green-400/30 bg-green-400/5'
+                                            : project.status === 'Building'
+                                            ? 'text-yellow-400 border-yellow-400/30 bg-yellow-400/5'
+                                            : 'text-[#D7E2EA] border-[#D7E2EA]/20 bg-[#D7E2EA]/5'
+                                          }`}>
+                          {project.status}
+                        </span>
+                      </div>
+                      <p className="text-[#D7E2EA] font-light opacity-50 leading-relaxed text-sm">
+                        {project.desc}
+                      </p>
+                      {/* Stack */}
+                      <div className="flex flex-wrap gap-1.5 mt-1">
+                        {project.stack.map((s) => (
+                          <span key={s}
+                            className="text-[#D7E2EA] opacity-40 border border-[#D7E2EA]/15
+                                       rounded-full px-2.5 py-0.5 text-[10px] sm:text-xs font-light">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Progress bar */}
+                    <div className="flex flex-col gap-2 sm:w-36 sm:flex-shrink-0">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[#D7E2EA] opacity-30 text-[10px] uppercase tracking-widest">
+                          Progress
+                        </span>
+                        <span className="text-[#D7E2EA] font-medium text-xs opacity-60">
+                          {project.progress}%
+                        </span>
+                      </div>
+                      <div className="h-1.5 bg-[#D7E2EA]/10 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full rounded-full bg-gradient-to-r from-[#646973] to-[#BBCCD7]"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${project.progress}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.3 + i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* ══ 5. SKILLS ═══════════════════════════════════════════════════ */}
       <FadeIn y={40}>
         <section className="bg-white rounded-t-[32px] sm:rounded-t-[44px] md:rounded-t-[56px]
                             -mt-8 sm:-mt-10 px-4 sm:px-8 md:px-12 py-16 sm:py-24 md:py-32">

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import { PersonSchema } from './components/SEO'
 
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
@@ -40,6 +41,8 @@ function App() {
         transition: 'background-color 0.3s ease',
       }}
     >
+      {/* Sitewide JSON-LD Person schema — injected once for all pages */}
+      <PersonSchema />
       <Navbar />
 
       <AnimatePresence mode="wait">
